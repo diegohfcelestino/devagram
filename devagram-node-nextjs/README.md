@@ -54,6 +54,7 @@ $ yarn run dev
 ```
 
 O app estará disponível no seu browser pelo endereço [http://localhost:3000](http://localhost:3000).
+Mas como se trata de um back end os endpoints estão disponíveis a partir do endereço [http://localhost:3000/api/](http://localhost:3000/api/), complementando com "login", "cadastro", etc. Para uma melhor experiência usar com o [insomnia rest](https://insomnia.rest/)
 
 Lembrando que será necessário criar uma conta no [Mongo](https://www.mongodb.com/), um projeto para disponibilizar um Realtime Database e configurar para acessar. Colocar as variáveis de ambiente em um arquivo .env.local conforme segue exemplo na raiz do projeto<br/><br/>
 
@@ -78,7 +79,7 @@ Este projeto está licenciado sob a Licença MIT. Consulte o arquivo de [LICENÇ
 Entre em contato em minhas redes.
 
 [![Github Badge](https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white&link=link_do_seu_perfil_no_github)](https://github.com/diegohfcelestino)
-[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/diego-ferreira-34b6348b/)](https://www.linkedin.com/in/diego-ferreira-34b6348b/)
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/diego-ferreira-34b6348b/)](https://www.linkedin.com/in/diegohfcelestino/)
 [![Whatsapp Badge](https://img.shields.io/badge/-Whatsapp-4CA143?style=flat-square&labelColor=4CA143&logo=whatsapp&logoColor=white&link=https://api.whatsapp.com/send?phone=+5516991187434&text=Hello!)](https://api.whatsapp.com/send?phone=+5516991187434&text=Hello!)
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:diegohfcelestino@gmail.com)](mailto:diegohfcelestino@gmail.com)
 <br/>
