@@ -8,7 +8,7 @@ const {
   BUCKET_PUBLICACOES
 } = process.env;
 
-const Cosmic = cosmicjs;
+const Cosmic = cosmicjs();
 
 const bucketAvatares = Cosmic.bucket({
   slug: BUCKET_AVATARES,
@@ -30,7 +30,7 @@ const uploadImagemCosmic = async (req: any) => {
       !req.file.originalname.includes(".jpg") &&
       !req.file.originalname.includes(".jpeg")
     ) {
-      throw new Error("Extensao da imagem invalida");
+      throw new Error("Extensão da imagem invalida");
     }
 
     const media_object = {

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { conectarMongoDb } from "../../middlewares/conectarMongoDB";
+import { conectarMongoDB } from "../../middlewares/conectarMongoDB";
 import type { RespostaPadraoMsg } from "../../types/RespostaPadraoMsg";
 import type { LoginResposta } from "../../types/LoginResposta";
 import md5 from "md5";
@@ -37,4 +37,4 @@ const endpointLogin = async (
   return res.status(405).json({ erro: "Método informado não é válido" });
 };
 
-export default conectarMongoDb(endpointLogin);
+export default conectarMongoDB(endpointLogin);

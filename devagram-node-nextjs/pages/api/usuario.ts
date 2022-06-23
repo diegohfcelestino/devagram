@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import type { RespostaPadraoMsg } from "../../types/RespostaPadraoMsg";
 import { validarTokenJWT } from "../../middlewares/validarTokenJWT";
 
 const usuarioEndpoint = (req: NextApiRequest, res: NextApiResponse) => {
