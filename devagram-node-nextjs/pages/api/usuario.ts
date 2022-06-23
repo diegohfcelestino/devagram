@@ -57,7 +57,7 @@ const handler = nc()
 
       return res
         .status(400)
-        .json({ erro: "Nao foi possivel obter dados do usuario" });
+        .json({ erro: "Nao foi possível obter dados do usuario" });
     }
   );
 
