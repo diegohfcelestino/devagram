@@ -29,6 +29,10 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [TypeScript](https://www.typescriptlang.org/)
 - [Mongo](https://www.mongodb.com/)
 - [JWT](https://jwt.io/)
+- [Multer](https://www.npmjs.com/package/multer)
+- [Cosmic](https://www.cosmicjs.com/)
+
+https://www.cosmicjs.com/
 
 Para mais detalhes, veja o **[package.json](./package.json)**.<br/><br/>
 
