@@ -9,7 +9,7 @@ import { UsuarioModel } from "../../models/UsuarioModel";
 
 const handler = nc()
   .use(upload.single("file"))
-  .post(async (req: any, res: NextApiResponse<RespostaPadraoMsg>) => {
+  .post(async (req: any, res: NextApiResponse<RespostaPadraoMsg | any>) => {
     try {
       const { userId } = req.query;
       const usuario = await UsuarioModel.findById(userId);
@@ -39,6 +39,9 @@ const handler = nc()
         foto: image.media.url,
         data: new Date()
       };
+
+      usuario.publicacoes++;
+      await UsuarioModel.findByIdAndUpdate({ _id: usuario._id }, usuario);
 
       await PublicacaoModel.create(publicacao);
       return res.status(200).json({ msg: "Publicação criada com sucesso" });
