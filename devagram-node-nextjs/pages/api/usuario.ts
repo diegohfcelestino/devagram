@@ -5,6 +5,7 @@ import { conectarMongoDB } from "../../middlewares/conectarMongoDB";
 import { UsuarioModel } from "../../models/UsuarioModel";
 import nc from "next-connect";
 import { upload, uploadImagemCosmic } from "../../services/uploadImagemCosmic";
+import { politicaCORS } from "../../middlewares/politicaCORS";
 
 const handler = nc()
   .use(upload.single("file"))
@@ -14,7 +15,7 @@ const handler = nc()
       const usuario = await UsuarioModel.findById(userId);
 
       if (!usuario) {
-        return res.status(400).json({ erro: "Usuario não encontrado" });
+        return res.status(400).json({ erro: "Usuario nao encontrado" });
       }
 
       const { nome } = req?.body;
@@ -32,12 +33,12 @@ const handler = nc()
 
       await UsuarioModel.findByIdAndUpdate({ _id: usuario._id }, usuario);
 
-      return res.status(200).json({ msg: "Usuario alterado com sucesso" });
+      return res.status(200).json({ msg: "Usuario alterado com sucesos" });
     } catch (e) {
       console.log(e);
       return res
         .status(400)
-        .json({ erro: "Nao foi possível atualizar usuario:" + e });
+        .json({ erro: "Nao foi possivel atualizar usuario:" + e });
     }
   })
   .get(
@@ -57,7 +58,7 @@ const handler = nc()
 
       return res
         .status(400)
-        .json({ erro: "Nao foi possível obter dados do usuario" });
+        .json({ erro: "Nao foi possivel obter dados do usuario" });
     }
   );
 
@@ -67,4 +68,4 @@ export const config = {
   }
 };
 
-export default validarTokenJWT(conectarMongoDB(handler));
+export default politicaCORS(validarTokenJWT(conectarMongoDB(handler)));
