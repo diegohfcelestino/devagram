@@ -1,5 +1,5 @@
 const validarNome = (nome) => {
-  return nome?.toString().length > 2;
+  return nome?.toString().length >= 2;
 };
 
 const validarEmail = (email) => {
