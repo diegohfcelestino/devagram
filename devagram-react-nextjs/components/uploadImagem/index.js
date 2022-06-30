@@ -42,7 +42,7 @@ export default function UploadImagem({
           <img
             src={imagemPreview}
             alt="imagem preview"
-            className="imagemPreviewClassName" />
+            className={imagemPreviewClassName} />
         </div>
       )}
       <input
