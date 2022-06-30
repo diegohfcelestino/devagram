@@ -4,3 +4,15 @@
   font-family: $fontRegular;
   font-size: 14px
 }
+
+.avatar{
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.oculto{
+  display: none;
+}
+
+@import '../public/fonts/fonts.scss';
+@import '../components/botao/botao.scss';
