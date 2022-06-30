@@ -5,6 +5,11 @@
   font-size: 14px
 }
 
+html, body, #__next {
+  height: 100%;
+  margin: 0;
+}
+
 .avatar{
   border-radius: 50%;
   object-fit: cover;
@@ -14,5 +19,25 @@
   display: none;
 }
 
+//colocando cor nos inputs
+input {
+  //para os navegadores chrome, opera, safari e firefox
+  &::placeholder {
+    color: $cinza2;
+    opacity: 1;
+  }
+  //para internet explores 10 e 11
+  &:-ms-input-placeholder {
+    color: $cinza2;
+  }
+  //para o edge
+  &::-ms-input-placeholder {
+    color: $cinza2;
+  }
+
+}
+
 @import '../public/fonts/fonts.scss';
 @import '../components/botao/botao.scss';
+@import './paginaPublica.scss';
+@import '../components/inputPublico/inputPublico.scss';
