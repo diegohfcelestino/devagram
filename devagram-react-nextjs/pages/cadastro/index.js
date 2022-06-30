@@ -10,6 +10,9 @@ import imagemChave from '../../public/imagens/chave.svg';
 import imagemAvatar from '../../public/imagens/avatar.svg';
 import InputPublico from "../../components/inputPublico";
 import { validarEmail, validarSenha, validarNome, validarConfirmacaoSenha } from '../../utils/validadores';
+import UsuarioService from "../../services/UsuarioService";
+
+const usuarioService = new UsuarioService();
 
 export default function Cadastro() {
   const [imagem, setImagem] = useState(null);
@@ -17,6 +20,7 @@ export default function Cadastro() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [estaSubmetendo, setEstaSubmetendo] = useState(false);
 
   const validarFormulario = () => {
     return (
@@ -24,7 +28,30 @@ export default function Cadastro() {
     );
   };
 
+  const aoSubmeter = async (e) => {
+    e.preventDefault();
+    if (!validarFormulario()) {
+      return;
+    }
+    setEstaSubmetendo(true);
 
+    try {
+      const corpoReqCadastro = new FormData();
+      corpoReqCadastro.append("nome", nome);
+      corpoReqCadastro.append("email", email);
+      corpoReqCadastro.append("senha", senha);
+
+      if (imagem?.arquivo) {
+        corpoReqCadastro.append("file", imagem.arquivo);
+      }
+      await usuarioService.cadastro(corpoReqCadastro);
+      alert("Cadastro realizado com sucesso!");
+    } catch (error) {
+      alert("Erro ao cadastrar usuário" + error?.response?.data?.erro);
+    }
+
+    setEstaSubmetendo(false);
+  };
 
   return (
     <section className={`paginaCadastro paginaPublica`}>
@@ -38,7 +65,7 @@ export default function Cadastro() {
       </div>
 
       <div className="conteudoPaginaPublica">
-        <form>
+        <form onSubmit={aoSubmeter}>
           <UploadImagem
             imagemPreviewClassName="avatar avatarPreview"
             imagemPreview={imagem?.preview || imagemAvatar.src}
@@ -86,7 +113,7 @@ export default function Cadastro() {
           <Botao
             texto="Cadastrar"
             tipo="submit"
-            desabilitado={!validarFormulario()}
+            desabilitado={!validarFormulario() || estaSubmetendo}
           />
         </form>
 

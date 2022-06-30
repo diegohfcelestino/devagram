@@ -2,6 +2,7 @@ import InputPublico from "../inputPublico";
 import Image from "next/image";
 import Botao from "../botao";
 import { validarEmail, validarSenha } from '../../utils/validadores';
+import UsuarioService from "../../services/UsuarioService";
 
 import imagemEnvelope from '../../public/imagens/envelope.svg';
 import imagemChave from '../../public/imagens/chave.svg';
@@ -9,14 +10,36 @@ import imagemLogo from '../../public/imagens/logo.svg';
 import Link from "next/link";
 import { useState } from "react";
 
+const usuarioService = new UsuarioService();
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [estaSubmetendo, setEstaSubmetendo] = useState(false);
 
   const validarFormulario = () => {
     return (
       validarEmail(email) && validarSenha(senha)
     );
+  };
+
+  const aoSubmeter = async (e) => {
+    e.preventDefault();
+    if (!validarFormulario()) {
+      return;
+    }
+    setEstaSubmetendo(true);
+
+    try {
+      await usuarioService.login({
+        login: email,
+        senha
+      });
+    } catch (error) {
+      alert("Erro ao Realizar Login" + error?.response?.data?.erro);
+    }
+
+    setEstaSubmetendo(false);
   };
 
   return (
@@ -31,7 +54,7 @@ export default function Login() {
       </div>
 
       <div className="conteudoPaginaPublica">
-        <form action="">
+        <form onSubmit={aoSubmeter}>
           <InputPublico
             imagem={imagemEnvelope}
             texto="E-mail"
@@ -55,7 +78,7 @@ export default function Login() {
           <Botao
             texto="Login"
             tipo="submit"
-            desabilitado={!validarFormulario()}
+            desabilitado={!validarFormulario() || estaSubmetendo}
           />
         </form>
         <div className="rodapePaginaPublica">
