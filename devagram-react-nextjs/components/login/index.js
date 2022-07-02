@@ -12,7 +12,7 @@ import { useState } from "react";
 
 const usuarioService = new UsuarioService();
 
-export default function Login() {
+export default function Login({ aposAutenticacao }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [estaSubmetendo, setEstaSubmetendo] = useState(false);
@@ -35,8 +35,11 @@ export default function Login() {
         login: email,
         senha
       });
+      if (aposAutenticacao) {
+        aposAutenticacao();
+      }
     } catch (error) {
-      alert("Erro ao Realizar Login" + error?.response?.data?.erro);
+      alert("Erro ao Realizar Login " + error?.response?.data?.erro);
     }
 
     setEstaSubmetendo(false);
