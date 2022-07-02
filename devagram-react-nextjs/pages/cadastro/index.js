@@ -11,6 +11,7 @@ import imagemAvatar from '../../public/imagens/avatar.svg';
 import InputPublico from "../../components/inputPublico";
 import { validarEmail, validarSenha, validarNome, validarConfirmacaoSenha } from '../../utils/validadores';
 import UsuarioService from "../../services/UsuarioService";
+import { useRouter } from "next/router";
 
 const usuarioService = new UsuarioService();
 
@@ -21,6 +22,7 @@ export default function Cadastro() {
   const [senha, setSenha] = useState("");
   const [confirmarSenha, setConfirmarSenha] = useState("");
   const [estaSubmetendo, setEstaSubmetendo] = useState(false);
+  const router = useRouter();
 
   const validarFormulario = () => {
     return (
@@ -45,7 +47,15 @@ export default function Cadastro() {
         corpoReqCadastro.append("file", imagem.arquivo);
       }
       await usuarioService.cadastro(corpoReqCadastro);
-      alert("Cadastro realizado com sucesso!");
+      //abaixo seta os dados no local storage
+      await usuarioService.login({
+        login: email,
+        senha
+      });
+      //alert("Cadastro realizado com sucesso!");
+
+      //redirecionando o usuario cadastrado para a Home
+      router.push("/");
     } catch (error) {
       alert("Erro ao cadastrar usuário" + error?.response?.data?.erro);
     }
