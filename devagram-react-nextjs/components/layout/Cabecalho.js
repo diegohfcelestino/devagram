@@ -18,7 +18,7 @@ export default function Cabecalho() {
           <div className="containerImagemLupa">
             <Image
               src={imagemLupa}
-              alt="Icone Lupa"
+              alt="Ícone Lupa"
               layout="fill"
             />
           </div>
