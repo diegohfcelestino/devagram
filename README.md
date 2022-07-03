@@ -58,7 +58,14 @@ O frontend web da nossa aplicação utilizamos o ReactJS também com o Nextjs. N
 <div>
 <img src="./assets/next.png" width="50">
 <img src="./assets/node.png" width="50">
+<img src="./assets/typescript.png" width="50">
+<img src="./assets/mongo.png" width="50">
+<img src="./assets/moment.png" width="50">
+<img src="./assets/jwt.png" width="50">
+<img src="./assets/cosmic.png" width="50">
 <img src="./assets/react.png" width="50">
+<img src="./assets/javascript.png" width="50">
+<img src="./assets/sass.png" width="50">
 </div>
 
 
