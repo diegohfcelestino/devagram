@@ -40,21 +40,26 @@ O Projeto desenvolvido foi um clone do Instagram, onde criamos o backend com Nod
 ### Backend
 
 <img src="./assets/node.png" width="150">
-<img src="./assets/next.png" width="150">
+
 
 - [Backend](https://github.com/diegohfcelestino/devagram/tree/main/devagram-node-nextjs)
 Criamos o backend da aplicação utilizando NodeJS com o Nextjs. Nesse projeto utilizou o Typescript, que auxilia no aumento da produtividade em desenvolvimento, utilizamos o Mongose, para trabalhar com banco de dados e integrar com o Mongo Atlas (que é o MongoDB online), utilizamos o multer e o cosmic para trabalhar com upload de imagens e também inserimos política de CORS.
 
 ### Aula 2    
 <img src="./assets/react.png" width="150">
-<img src="./assets/next.png" width="150">
 
 - [Frontend](https://github.com/diegohfcelestino/devagram/tree/main/devagram-react-nextjs)
 O frontend web da nossa aplicação utilizamos o ReactJS também com o Nextjs. Nesta parte de projeto utilizamos o Javascript, Sass para criar os estilos, axios para chamadas http, utilizamos o HOC (Higher-Order Component), para reutilizar os componentes e dar autorização nas páginas de acesso.
 
 
 
-## ✨ Tecnologias
+## ✨ Tecnologias 
+
+<div>
+<img src="./assets/next.png" width="50">
+<img src="./assets/node.png" width="50">
+<img src="./assets/react.png" width="50">
+</div>
 
 
 - [Nextjs](https://nextjs.org/)
@@ -67,6 +72,7 @@ O frontend web da nossa aplicação utilizamos o ReactJS também com o Nextjs. N
 - [Multerjs](https://www.npmjs.com/package/multer)
 - [Cosmicjs](https://www.cosmicjs.com/)
 - [Reactjs](https://reactjs.org/)
+- [Javascript](https://www.javascript.com/)
 - [SASS](https://sass-lang.com/)
 - [Axios](https://axios-http.com/ptbr/docs/intro)
   
