@@ -4,38 +4,28 @@ import logoHorizontalImg from '../../public/imagens/logoHorizontal.svg';
 import imagemLupa from '../../public/imagens/lupa.svg';
 import Navegacao from './Navegacao';
 import ResultadoPesquisa from './ResultadoPesquisa';
+import UsuarioService from '../../services/UsuarioService';
+
+const usuarioService = new UsuarioService();
 
 export default function Cabecalho() {
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
-  const [termoPesquisado, setTermoPesquisado] = useState([]);
+  const [termoPesquisado, setTermoPesquisado] = useState('');
 
-  const aoPesquisar = (e) => {
+  const aoPesquisar = async (e) => {
     setTermoPesquisado(e.target.value);
     setResultadoPesquisa([]);
 
     if (termoPesquisado.length < 3) {
       return;
     }
-    setResultadoPesquisa([
-      {
-        avatar: '',
-        nome: "Diego",
-        email: 'testediego@diego.com',
-        _id: '21324331'
-      },
-      {
-        avatar: '',
-        nome: "Aline",
-        email: 'bbbbb@diego.com',
-        _id: '213245454331'
-      },
-      {
-        avatar: '',
-        nome: "Tiago",
-        email: 'aaaaaa@diego.com',
-        _id: '21324676331'
-      }
-    ]);
+
+    try {
+      const { data } = await usuarioService.pesquisar(termoPesquisado);
+      setResultadoPesquisa(data);
+    } catch (error) {
+      alert("Erro ao pesquisar usuário" + error?.response?.data?.erro);
+    }
   };
 
   const aoClicarResultadoPesquisa = (id) => {
