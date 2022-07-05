@@ -14,13 +14,21 @@ export default function Feed({ usuarioLogado }) {
           nome: 'Joao',
           avatar: null
         },
-        fotoDoPost: 'https://ciclovivo.com.br/wp-content/uploads/2018/10/iStock-536613027.jpg',
-        descricao: '',
+        fotoDoPost: 'https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg',
+        descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry, orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry, orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry, orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry, orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
         curtidas: [],
         comentarios: [
           {
             nome: 'Diego',
             mensagem: 'Muito Legal'
+          },
+          {
+            nome: 'Lucas',
+            mensagem: 'Muito Tooooop'
+          },
+          {
+            nome: 'Tiago',
+            mensagem: 'Show de bola'
           }
         ],
 
@@ -33,7 +41,7 @@ export default function Feed({ usuarioLogado }) {
           avatar: null
         },
         fotoDoPost: 'https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg',
-        descricao: '',
+        descricao: 's standard dummy text ever since the 1500s, when an unknown printe',
         curtidas: [],
         comentarios: [
           {
@@ -47,9 +55,13 @@ export default function Feed({ usuarioLogado }) {
   }, [usuarioLogado]);
   return (
 
-    <div className="feedContainer">
+    <div className="feedContainer largura30pctDesktop">
       {listaDePostagens.map(dadosPostagem => (
-        <Postagem key={dadosPostagem.id} {...dadosPostagem} />
+        <Postagem
+          key={dadosPostagem.id}
+          usuarioLogado={usuarioLogado}
+          {...dadosPostagem}
+        />
       ))}
     </div>
 
