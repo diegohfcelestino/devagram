@@ -34,6 +34,14 @@ export default function Postagem({
     setTamanhoAtualDaDescricao(Number.MAX_SAFE_INTEGER);
   };
 
+  const obterImagemComentario = () => {
+    return deveExibirSecaoParaComentar ? imgComentarioAtivo : imgComentarioCinza;
+  };
+
+  const comentar = async (comentario) => {
+    console.log("Fazer comentário");
+    return Promise.resolve(true);
+  };
 
   return (
     <div className="postagem">
@@ -58,7 +66,7 @@ export default function Postagem({
             onClick={() => console.log('curtir')}
           />
           <Image
-            src={imgComentarioCinza}
+            src={obterImagemComentario()}
             alt='Ícone comentar'
             width={20}
             height={20}
@@ -93,7 +101,7 @@ export default function Postagem({
       </div>
 
       {deveExibirSecaoParaComentar && (
-        <FazerComentario usuarioLogado={usuarioLogado} />
+        <FazerComentario comentar={comentar} usuarioLogado={usuarioLogado} />
       )
       }
 
