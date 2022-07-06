@@ -1,58 +1,39 @@
 import { useEffect, useState } from "react";
+import FeedService from "../../services/FeedService";
 import Postagem from "./Postagem";
+
+const feedService = new FeedService();
 
 export default function Feed({ usuarioLogado }) {
   const [listaDePostagens, setListaDePostagens] = useState([]);
 
-  useEffect(() => {
-    console.log("Carregar o feed");
-    setListaDePostagens([
+  async function carregarPostagensFeed() {
+    const { data } = await feedService.carregarPostagens();
+    const postagensFormatadas = data.map((postagem) => (
       {
-        id: '1',
+        id: postagem._id,
         usuario: {
-          id: '1',
-          nome: 'Joao',
-          avatar: null
+          id: postagem.userId,
+          nome: postagem.usuario.nome,
+          avatar: postagem.usuario.avatar
         },
-        fotoDoPost: 'https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg',
-        descricao: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry, orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry, orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry, orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry, orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry',
-        curtidas: [],
-        comentarios: [
-          {
-            nome: 'Diego',
-            mensagem: 'Muito Legal'
-          },
-          {
-            nome: 'Lucas',
-            mensagem: 'Muito Tooooop'
-          },
-          {
-            nome: 'Tiago',
-            mensagem: 'Show de bola'
-          }
-        ],
-
-      },
-      {
-        id: '2',
-        usuario: {
-          id: '2',
-          nome: 'Diego',
-          avatar: null
-        },
-        fotoDoPost: 'https://s1.static.brasilescola.uol.com.br/be/conteudo/images/imagem-em-lente-convexa.jpg',
-        descricao: 's standard dummy text ever since the 1500s, when an unknown printe',
-        curtidas: [],
-        comentarios: [
-          {
-            nome: 'Joao',
-            mensagem: 'Muito Bom'
-          }
-        ],
-
+        fotoDoPost: postagem.foto,
+        descricao: postagem.descricao,
+        curtidas: postagem.likes,
+        comentarios: postagem.comentarios.map(c => ({
+          nome: c.nome,
+          mensagem: c.comentario
+        }))
       }
-    ]);
+    ));
+    setListaDePostagens(postagensFormatadas);
+  }
+
+  useEffect(() => {
+    carregarPostagensFeed();
   }, [usuarioLogado]);
+
+
   return (
 
     <div className="feedContainer largura30pctDesktop">

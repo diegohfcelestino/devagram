@@ -38,10 +38,10 @@ export default function Postagem({
   return (
     <div className="postagem">
       <Link href={`/perfil/${usuario.id}`}>
-        <session className="cabecalhoPostagem">
+        <div className="cabecalhoPostagem">
           <Avatar src={usuario.avatar} />
           <strong>{usuario.nome}</strong>
-        </session>
+        </div>
       </Link>
 
       <div className="fotoDaPostagem">
