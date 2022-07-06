@@ -40,6 +40,12 @@ export default function Postagem({
 
   const comentar = async (comentario) => {
     console.log("Fazer comentário");
+
+    try {
+
+    } catch (e) {
+
+    }
     return Promise.resolve(true);
   };
 
