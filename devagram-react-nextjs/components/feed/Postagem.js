@@ -15,8 +15,15 @@ const tamanhoLimiteDescricao = 90;
 const feedService = new FeedService();
 
 export default function Postagem({
-  id, usuario, fotoDoPost, descricao, comentarios, usuarioLogado
+  id,
+  usuario,
+  fotoDoPost,
+  descricao,
+  comentarios,
+  usuarioLogado,
+  curtidas
 }) {
+  const [curtidasPostagem, setCurtidasPostagem] = useState(curtidas);
   const [comentariosPostagem, setComentariosPostagem] = useState(comentarios);
   const [deveExibirSecaoParaComentar, setDeveExibirSecaoParaComentar] = useState(false);
   const [tamanhoAtualDaDescricao, setTamanhoAtualDaDescricao] = useState(tamanhoLimiteDescricao);
@@ -55,8 +62,36 @@ export default function Postagem({
     } catch (e) {
       alert(`Erro ao fazer comentário! ` + (e?.response?.data?.erro || ''));
     }
+  };
 
-    return Promise.resolve(true);
+  const usuarioLogadoCurtiuPostagem = () => {
+    return curtidasPostagem.includes(usuarioLogado.id);
+  };
+
+  const alterarCurtida = async () => {
+    try {
+      await feedService.alterarCurtida(id);
+      if (usuarioLogadoCurtiuPostagem()) {
+        // Retira o usuario logado da lista de curtidas
+        setCurtidasPostagem(
+          curtidasPostagem.filter(idUsuarioQueCurtiu => idUsuarioQueCurtiu !== usuarioLogado.id)
+        );
+      } else {
+        // Adiciona o usuario logado na lista de curtidas
+        setCurtidasPostagem([
+          ...curtidasPostagem,
+          usuarioLogado.id
+        ]);
+      }
+    } catch (e) {
+      alert(`Erro ao alterar a curtida! ` + (e?.response?.data?.erro || ''));
+    }
+  };
+
+  const obterImagemCurtida = () => {
+    return usuarioLogadoCurtiuPostagem()
+      ? imgCurtido
+      : imgCurtir;
   };
 
   return (
@@ -75,11 +110,11 @@ export default function Postagem({
       <div className="rodapeDaPostagem">
         <div className="acoesDaPostagem">
           <Image
-            src={imgCurtir}
+            src={obterImagemCurtida()}
             alt='Ícone curtir'
             width={20}
             height={20}
-            onClick={() => console.log('curtir')}
+            onClick={alterarCurtida}
           />
           <Image
             src={obterImagemComentario()}
@@ -89,7 +124,7 @@ export default function Postagem({
             onClick={() => setDeveExibirSecaoParaComentar(!deveExibirSecaoParaComentar)}
           />
           <span className="quantidadeCurtidas">
-            Curtido por <strong>32 pessoas</strong>
+            Curtido por <strong>{curtidasPostagem.length} pessoas</strong> e tem <strong>{comentariosPostagem.length} comentários</strong>
           </span>
         </div>
         <div className="descricaoDaPostagem">
