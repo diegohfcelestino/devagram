@@ -7,27 +7,24 @@ export function FazerComentario({ usuarioLogado, comentar }) {
   const [comentario, setComentario] = useState('');
 
   const aoDigitarComentario = (e) => {
-    const valorInput = e.target.value.trim();
+    const valorInput = e.target.value;
     setComentario(valorInput);
     setLinhas(valorInput.length > 0 ? 2 : 1);
   };
 
   const aoPressionarQualquerTecla = (e) => {
     if (e.key === 'Enter') {
-      manipularComentario();
+      fazerComentario();
 
     }
   };
 
-  const manipularComentario = async () => {
+  const fazerComentario = () => {
     if (comentario.trim().length === 0 || !comentar) {
       return;
     }
-    const sucessoAoComentar = await comentar(comentario);
-    if (sucessoAoComentar) {
-      setComentario('');
-      setLinhas(1);
-    }
+    comentar(comentario);
+
   };
 
   return (
@@ -44,6 +41,7 @@ export function FazerComentario({ usuarioLogado, comentar }) {
       <button
         type="button"
         className="btnPublicacao desktop"
+        onClick={fazerComentario}
       >
         Publicar
       </button>
