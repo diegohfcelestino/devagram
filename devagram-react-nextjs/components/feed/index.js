@@ -4,7 +4,7 @@ import Postagem from "./Postagem";
 
 const feedService = new FeedService();
 
-export default function Feed({ usuarioLogado }) {
+export default function Feed({ usuarioLogado, usuarioPerfil }) {
   const [listaDePostagens, setListaDePostagens] = useState([]);
 
   async function carregarPostagensFeed() {
@@ -14,8 +14,8 @@ export default function Feed({ usuarioLogado }) {
         id: postagem._id,
         usuario: {
           id: postagem.userId,
-          nome: postagem.usuario.nome,
-          avatar: postagem.usuario.avatar
+          nome: postagem?.usuario?.nome || usuarioPerfil?.nome,
+          avatar: postagem?.usuario?.avatar || usuarioPerfil?.avatar
         },
         fotoDoPost: postagem.foto,
         descricao: postagem.descricao,
@@ -26,13 +26,18 @@ export default function Feed({ usuarioLogado }) {
         }))
       }
     ));
+
     setListaDePostagens(postagensFormatadas);
   }
 
   useEffect(() => {
     carregarPostagensFeed();
-  }, [usuarioLogado]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [usuarioLogado, usuarioPerfil]);
 
+  if (!listaDePostagens.length) {
+    return null;
+  }
 
   return (
 

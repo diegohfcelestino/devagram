@@ -36,6 +36,7 @@ export function FazerComentario({ usuarioLogado, comentar }) {
         placeholder="Adicione um comentário"
         onKeyDown={aoPressionarQualquerTecla}
         value={comentario}
+        autoFocus={true}
       >
       </textarea>
       <button

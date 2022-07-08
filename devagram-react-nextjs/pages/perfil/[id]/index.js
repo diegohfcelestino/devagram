@@ -1,8 +1,14 @@
+import CabecalhoComAcoes from '../../../components/cabecalhoComAcoes';
+import Feed from '../../../components/feed';
 import comAutorizacao from '../../../hoc/comAutorizacao';
 
-function Perfil() {
+function Perfil({ usuarioLogado }) {
   return (
-    <h1>Perfil</h1>
+    <div className='paginaPerfil'>
+      <CabecalhoComAcoes />
+      <Feed usuarioLogado={usuarioLogado} />
+
+    </div>
   );
 }
 
