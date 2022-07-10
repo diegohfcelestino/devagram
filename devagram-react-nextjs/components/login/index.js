@@ -1,25 +1,26 @@
-import InputPublico from "../inputPublico";
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import InputPublico from "../inputPublico";
 import Botao from "../botao";
-import { validarEmail, validarSenha } from '../../utils/validadores';
+import { validarEmail, validarSenha } from "../../utils/validadores";
 import UsuarioService from "../../services/UsuarioService";
 
-import imagemEnvelope from '../../public/imagens/envelope.svg';
-import imagemChave from '../../public/imagens/chave.svg';
-import imagemLogo from '../../public/imagens/logo.svg';
-import Link from "next/link";
-import { useState } from "react";
+import imagemEnvelope from "../../public/imagens/envelope.svg";
+import imagemChave from "../../public/imagens/chave.svg";
+import imagemLogo from "../../public/imagens/logo.svg";
 
 const usuarioService = new UsuarioService();
 
 export default function Login({ aposAutenticacao }) {
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [estaSubmetendo, setEstaSubmetendo] = useState(false);
 
   const validarFormulario = () => {
     return (
-      validarEmail(email) && validarSenha(senha)
+      validarEmail(email)
+      && validarSenha(senha)
     );
   };
 
@@ -28,6 +29,7 @@ export default function Login({ aposAutenticacao }) {
     if (!validarFormulario()) {
       return;
     }
+
     setEstaSubmetendo(true);
 
     try {
@@ -35,11 +37,14 @@ export default function Login({ aposAutenticacao }) {
         login: email,
         senha
       });
+
       if (aposAutenticacao) {
         aposAutenticacao();
       }
     } catch (error) {
-      alert("Erro ao Realizar Login " + error?.response?.data?.erro);
+      alert(
+        "Erro ao realizar o login. " + error?.response?.data?.erro
+      );
     }
 
     setEstaSubmetendo(false);
@@ -50,7 +55,7 @@ export default function Login({ aposAutenticacao }) {
       <div className="logoContainer">
         <Image
           src={imagemLogo}
-          alt="Logotipo"
+          alt="logotipo"
           layout="fill"
           className="logo"
         />
@@ -64,7 +69,7 @@ export default function Login({ aposAutenticacao }) {
             tipo="email"
             aoAlterarValor={e => setEmail(e.target.value)}
             valor={email}
-            mensagemValidacao="O endereço de e-mail é inválido"
+            mensagemValidacao="O endereço informado é inválido"
             exibirMensagemValidacao={email && !validarEmail(email)}
           />
 
@@ -74,7 +79,7 @@ export default function Login({ aposAutenticacao }) {
             tipo="password"
             aoAlterarValor={e => setSenha(e.target.value)}
             valor={senha}
-            mensagemValidacao="A senha deve conter no mínimo 3 caracteres"
+            mensagemValidacao="Precisa ter pelo menos 3 caracteres"
             exibirMensagemValidacao={senha && !validarSenha(senha)}
           />
 
@@ -84,9 +89,10 @@ export default function Login({ aposAutenticacao }) {
             desabilitado={!validarFormulario() || estaSubmetendo}
           />
         </form>
+
         <div className="rodapePaginaPublica">
           <p>Não possui uma conta?</p>
-          <Link href="/cadastro">Faça seu cadastro agora</Link>
+          <Link href="/cadastro">Faça seu cadastro agora!</Link>
         </div>
       </div>
     </section>

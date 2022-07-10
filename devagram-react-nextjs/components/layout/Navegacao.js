@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import imgHomeAtivo from '../../public/imagens/homeAtivo.svg';
 import imgHomeCinza from '../../public/imagens/homeCinza.svg';
 import imgPublicacaoAtivo from '../../public/imagens/publicacaoAtivo.svg';
@@ -12,22 +12,21 @@ const mapaDeRotas = {
   home: {
     imagemAtivo: imgHomeAtivo,
     rotasAtivacao: ['/'],
-    imagemPadrao: imgHomeCinza,
+    imagemPadrao: imgHomeCinza
   },
   publicacao: {
     imagemAtivo: imgPublicacaoAtivo,
     rotasAtivacao: ['/publicacao'],
-    imagemPadrao: imgPublicacaoCinza,
+    imagemPadrao: imgPublicacaoCinza
   },
   perfil: {
     imagemAtivo: imgUsuarioAtivo,
-    rotasAtivacao: ['/perfil/eu', '/perfil/eu/editar'],
-    imagemPadrao: imgUsuarioCinza,
+    rotasAtivacao: ['/perfil/eu', '/perfil/editar'],
+    imagemPadrao: imgUsuarioCinza
   }
 };
 
 export default function Navegacao({ className }) {
-
   const [rotaAtiva, setRotaAtiva] = useState('home');
   const router = useRouter();
 
@@ -42,18 +41,21 @@ export default function Navegacao({ className }) {
         window.location.pathname
       );
     });
+
     if (indiceAtivo === -1) {
       setRotaAtiva('home');
     } else {
       setRotaAtiva(chavesDoMapaDeRotas[indiceAtivo]);
     }
-
   };
+
   const obterImagem = (nomeRota) => {
     const rotaAtivada = mapaDeRotas[nomeRota];
+
     if (rotaAtiva === nomeRota) {
       return rotaAtivada.imagemAtivo;
     }
+
     return rotaAtivada.imagemPadrao;
   };
 
@@ -68,7 +70,7 @@ export default function Navegacao({ className }) {
         <li onClick={() => aoClicarNoIcone('home')}>
           <Image
             src={obterImagem('home')}
-            alt="Ícone Home"
+            alt='icone home'
             width={20}
             height={20}
           />
@@ -77,7 +79,7 @@ export default function Navegacao({ className }) {
         <li onClick={() => aoClicarNoIcone('publicacao')}>
           <Image
             src={obterImagem('publicacao')}
-            alt="Ícone Publicação"
+            alt='icone publicacao'
             width={20}
             height={20}
           />
@@ -86,7 +88,7 @@ export default function Navegacao({ className }) {
         <li onClick={() => aoClicarNoIcone('perfil')}>
           <Image
             src={obterImagem('perfil')}
-            alt="Ícone Usuário"
+            alt='icone usuario'
             width={20}
             height={20}
           />

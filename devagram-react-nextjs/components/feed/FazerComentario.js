@@ -2,7 +2,6 @@ import { useState } from "react";
 import Avatar from "../avatar";
 
 export function FazerComentario({ usuarioLogado, comentar }) {
-
   const [linhas, setLinhas] = useState(1);
   const [comentario, setComentario] = useState('');
 
@@ -15,7 +14,6 @@ export function FazerComentario({ usuarioLogado, comentar }) {
   const aoPressionarQualquerTecla = (e) => {
     if (e.key === 'Enter') {
       fazerComentario();
-
     }
   };
 
@@ -23,8 +21,8 @@ export function FazerComentario({ usuarioLogado, comentar }) {
     if (comentario.trim().length === 0 || !comentar) {
       return;
     }
-    comentar(comentario);
 
+    comentar(comentario);
   };
 
   return (
@@ -33,12 +31,12 @@ export function FazerComentario({ usuarioLogado, comentar }) {
       <textarea
         rows={linhas}
         onChange={aoDigitarComentario}
-        placeholder="Adicione um comentário"
         onKeyDown={aoPressionarQualquerTecla}
-        value={comentario}
         autoFocus={true}
-      >
+        value={comentario}
+        placeholder="Adicione um comentario...">
       </textarea>
+
       <button
         type="button"
         className="btnPublicacao desktop"

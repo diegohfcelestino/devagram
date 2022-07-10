@@ -1,16 +1,17 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import UploadImagem from "../../components/uploadImagem";
 import Botao from "../../components/botao";
-import imagemLogo from '../../public/imagens/logo.svg';
-import imagemUsuarioAtivo from '../../public/imagens/usuarioAtivo.svg';
-import imagemEnvelope from '../../public/imagens/envelope.svg';
-import imagemChave from '../../public/imagens/chave.svg';
-import imagemAvatar from '../../public/imagens/avatar.svg';
 import InputPublico from "../../components/inputPublico";
-import { validarEmail, validarSenha, validarNome, validarConfirmacaoSenha } from '../../utils/validadores';
+import UploadImagem from "../../components/uploadImagem";
+import { validarEmail, validarSenha, validarNome, validarConfirmacaoSenha } from "../../utils/validadores";
 import UsuarioService from "../../services/UsuarioService";
+
+import imagemLogo from "../../public/imagens/logo.svg";
+import imagemUsuarioAtivo from "../../public/imagens/usuarioAtivo.svg";
+import imagemEnvelope from "../../public/imagens/envelope.svg";
+import imagemChave from "../../public/imagens/chave.svg";
+import imagemAvatar from "../../public/imagens/avatar.svg";
 import { useRouter } from "next/router";
 
 const usuarioService = new UsuarioService();
@@ -20,13 +21,16 @@ export default function Cadastro() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [confirmacaoSenha, setConfirmacaoSenha] = useState("");
   const [estaSubmetendo, setEstaSubmetendo] = useState(false);
   const router = useRouter();
 
   const validarFormulario = () => {
     return (
-      validarNome(nome) && validarEmail(email) && validarSenha(senha) && validarConfirmacaoSenha(senha, confirmarSenha)
+      validarNome(nome)
+      && validarEmail(email)
+      && validarSenha(senha)
+      && validarConfirmacaoSenha(senha, confirmacaoSenha)
     );
   };
 
@@ -35,6 +39,7 @@ export default function Cadastro() {
     if (!validarFormulario()) {
       return;
     }
+
     setEstaSubmetendo(true);
 
     try {
@@ -46,18 +51,18 @@ export default function Cadastro() {
       if (imagem?.arquivo) {
         corpoReqCadastro.append("file", imagem.arquivo);
       }
+
       await usuarioService.cadastro(corpoReqCadastro);
-      //abaixo seta os dados no local storage
       await usuarioService.login({
         login: email,
         senha
       });
-      //alert("Cadastro realizado com sucesso!");
 
-      //redirecionando o usuario cadastrado para a Home
-      router.push("/");
+      router.push('/');
     } catch (error) {
-      alert("Erro ao cadastrar usuário" + error?.response?.data?.erro);
+      alert(
+        "Erro ao cadastrar usuario. " + error?.response?.data?.erro
+      );
     }
 
     setEstaSubmetendo(false);
@@ -68,7 +73,7 @@ export default function Cadastro() {
       <div className="logoContainer desktop">
         <Image
           src={imagemLogo}
-          alt="Logotipo"
+          alt="logotipo"
           layout="fill"
           className="logo"
         />
@@ -84,40 +89,42 @@ export default function Cadastro() {
 
           <InputPublico
             imagem={imagemUsuarioAtivo}
-            texto="Nome completo"
+            texto="Nome Completo"
             tipo="text"
             aoAlterarValor={e => setNome(e.target.value)}
             valor={nome}
-            mensagemValidacao="O nome deve conter no mínimo 2 caracteres"
+            mensagemValidacao="O nome precisa de pelo menos 2 caracteres"
             exibirMensagemValidacao={nome && !validarNome(nome)}
           />
+
           <InputPublico
             imagem={imagemEnvelope}
             texto="E-mail"
             tipo="email"
             aoAlterarValor={e => setEmail(e.target.value)}
             valor={email}
-            mensagemValidacao="O endereço de e-mail é inválido"
+            mensagemValidacao="O e-mail informado é inválido"
             exibirMensagemValidacao={email && !validarEmail(email)}
           />
+
           <InputPublico
             imagem={imagemChave}
             texto="Senha"
             tipo="password"
             aoAlterarValor={e => setSenha(e.target.value)}
             valor={senha}
-            mensagemValidacao="A senha deve conter no mínimo 3 caracteres"
+            mensagemValidacao="Precisa de pelo menos 3 caracteres"
             exibirMensagemValidacao={senha && !validarSenha(senha)}
           />
 
           <InputPublico
             imagem={imagemChave}
-            texto="Confirmar senha"
+            texto="Confirmar Senha"
             tipo="password"
-            aoAlterarValor={e => setConfirmarSenha(e.target.value)}
-            valor={confirmarSenha}
+            aoAlterarValor={e => setConfirmacaoSenha(e.target.value)}
+            valor={confirmacaoSenha}
             mensagemValidacao="As senhas precisam ser iguais"
-            exibirMensagemValidacao={confirmarSenha && !validarConfirmacaoSenha(senha, confirmarSenha)}
+            exibirMensagemValidacao={confirmacaoSenha && !validarConfirmacaoSenha(senha, confirmacaoSenha)}
           />
 
           <Botao
@@ -128,8 +135,8 @@ export default function Cadastro() {
         </form>
 
         <div className="rodapePaginaPublica">
-          <p>Já possui uma conta</p>
-          <Link href="/">Faça seu login agora</Link>
+          <p>Já possui uma conta?</p>
+          <Link href="/">Faça seu login agora!</Link>
         </div>
       </div>
     </section>

@@ -2,7 +2,7 @@
 
 * {
   font-family: $fontRegular;
-  font-size: 14px
+  font-size: 14px;
 }
 
 html, body, #__next {
@@ -10,27 +10,27 @@ html, body, #__next {
   margin: 0;
 }
 
-.avatar{
+.avatar {
   border-radius: 50%;
   object-fit: cover;
 }
 
-.oculto{
-  display: none;
+.oculto {
+  display: none !important;
 }
 
-//colocando cor nos inputs
 input {
-  //para os navegadores chrome, opera, safari e firefox
   &::placeholder {
+    /* chrome, opera, safari e firefox */
     color: $cinza2;
     opacity: 1;
   }
-  //para internet explores 10 e 11
+
   &:-ms-input-placeholder {
+    /*ie 10-11*/
     color: $cinza2;
   }
-  //para o edge
+
   &::-ms-input-placeholder {
     color: $cinza2;
   }
@@ -65,7 +65,7 @@ input {
     display: flex;
     justify-content: space-around;
     padding: 0;
-    margin: 10px 0;
+    margin: 10px 0px;
 
     li {
       list-style: none;
@@ -80,15 +80,27 @@ strong {
 
 body {
   @media screen and (min-width: $desktopBreakpoint) {
-   background-color: $cinza5;
-   background-image: url('/imagens/imagemDeFundoDesktop.svg');
+    background-color: $cinza5;
+    background-image: url('/imagens/imagemDeFundoDesktop.svg');
   }
 }
 
 .largura30pctDesktop {
   @media screen and (min-width: $desktopBreakpoint) {
-    width: 35%;
+    width: 30%;
     margin: auto;
+  }
+}
+
+.linhaDivisoria {
+  margin: 0;
+  border: none;
+  background-color: $cinza1;
+  height: 1px;
+
+  @media screen and (min-width: $desktopBreakpoint) {
+    margin: 0 auto;
+    width: 94%;
   }
 }
 
@@ -101,4 +113,6 @@ body {
 @import '../components/layout/rodape.scss';
 @import '../components/feed/feed.scss';
 @import '../components/cabecalhoComAcoes/cabecalhoComAcoes.scss';
-@import '../pages/perfil/perfil.scss'
+@import '../pages/perfil/perfil.scss';
+@import '../pages/publicacao/publicacao.scss';
+@import '../components/loading/loading.scss';

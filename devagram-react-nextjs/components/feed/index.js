@@ -8,12 +8,13 @@ export default function Feed({ usuarioLogado, usuarioPerfil }) {
   const [listaDePostagens, setListaDePostagens] = useState([]);
 
   async function carregarPostagensFeed() {
-    const { data } = await feedService.carregarPostagens();
+    setListaDePostagens([]);
+    const { data } = await feedService.carregarPostagens(usuarioPerfil?._id);
     const postagensFormatadas = data.map((postagem) => (
       {
         id: postagem._id,
         usuario: {
-          id: postagem.userId,
+          id: postagem.idUsuario,
           nome: postagem?.usuario?.nome || usuarioPerfil?.nome,
           avatar: postagem?.usuario?.avatar || usuarioPerfil?.avatar
         },
@@ -29,7 +30,6 @@ export default function Feed({ usuarioLogado, usuarioPerfil }) {
 
     setListaDePostagens(postagensFormatadas);
   }
-
   useEffect(() => {
     carregarPostagensFeed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,16 +40,15 @@ export default function Feed({ usuarioLogado, usuarioPerfil }) {
   }
 
   return (
-
     <div className="feedContainer largura30pctDesktop">
       {listaDePostagens.map(dadosPostagem => (
         <Postagem
           key={dadosPostagem.id}
-          usuarioLogado={usuarioLogado}
           {...dadosPostagem}
+          usuarioLogado={usuarioLogado}
         />
-      ))}
+      ))
+      }
     </div>
-
   );
 }
