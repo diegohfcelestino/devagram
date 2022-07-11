@@ -33,12 +33,12 @@ const handler = nc()
 
       await UsuarioModel.findByIdAndUpdate({ _id: usuario._id }, usuario);
 
-      return res.status(200).json({ msg: "Usuario alterado com sucesos" });
+      return res.status(200).json({ msg: "Usuario alterado com sucesso" });
     } catch (e) {
       console.log(e);
       return res
         .status(400)
-        .json({ erro: "Nao foi possivel atualizar usuario:" + e });
+        .json({ erro: "Nao foi possível atualizar usuario:" + e });
     }
   })
   .get(
@@ -58,7 +58,7 @@ const handler = nc()
 
       return res
         .status(400)
-        .json({ erro: "Nao foi possivel obter dados do usuario" });
+        .json({ erro: "Nao foi possível obter dados do usuario" });
     }
   );
 

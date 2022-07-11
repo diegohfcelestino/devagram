@@ -10,26 +10,26 @@ import { politicaCORS } from "../../middlewares/politicaCORS";
 
 const handler = nc()
   .use(upload.single("file"))
-  .post(async (req: any, res: NextApiResponse<RespostaPadraoMsg | any>) => {
+  .post(async (req: any, res: NextApiResponse<RespostaPadraoMsg>) => {
     try {
       const { userId } = req.query;
       const usuario = await UsuarioModel.findById(userId);
       if (!usuario) {
-        return res.status(400).json({ erro: "Usuario não encontrado" });
+        return res.status(400).json({ erro: "Usuario nao encontrado" });
       }
 
       if (!req || !req.body) {
         return res
           .status(400)
-          .json({ erro: "Parametros de entrada não informados" });
+          .json({ erro: "Parametros de entrada nao informados" });
       }
-      const { descricao } = req.body;
+      const { descricao } = req?.body;
 
       if (!descricao || descricao.length < 2) {
-        return res.status(400).json({ erro: "Descricão nao é valida" });
+        return res.status(400).json({ erro: "Descricao nao e válida" });
       }
 
-      if (!req.file) {
+      if (!req.file || !req.file.originalname) {
         return res.status(400).json({ erro: "Imagem e obrigatória" });
       }
 
@@ -48,7 +48,7 @@ const handler = nc()
       return res.status(200).json({ msg: "Publicação criada com sucesso" });
     } catch (e) {
       console.log(e);
-      return res.status(400).json({ erro: "Erro ao cadastrar publicacao" });
+      return res.status(400).json({ erro: "Erro ao cadastrar publicação" });
     }
   });
 
