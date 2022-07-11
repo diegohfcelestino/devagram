@@ -50,8 +50,8 @@ const pesquisaEndpoint = async (
 
         const usuariosEncontrados = await UsuarioModel.find({
           $or: [
-            { nome: { $regex: filtro, $options: "i" } },
-            { email: { $regex: filtro, $options: "i" } }
+            { nome: { $regex: filtro, $options: "i" } }
+            //{ email : {$regex : filtro, $options: 'i'}}
           ]
         });
 
@@ -62,7 +62,7 @@ const pesquisaEndpoint = async (
         return res.status(200).json(usuariosEncontrados);
       }
     }
-    return res.status(405).json({ erro: "Método informado não é valido" });
+    return res.status(405).json({ erro: "Método informado nao e válido" });
   } catch (e) {
     console.log(e);
     return res
