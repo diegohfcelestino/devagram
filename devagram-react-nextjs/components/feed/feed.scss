@@ -33,12 +33,14 @@
 
         .rodapeDaPostagem {
             padding: 5px 16px;
+            border-bottom: 3px solid $cinza1;
 
             strong.nomeUsuario {
                 font-size: 12px;
                 float: left;
                 margin-right: 4px;
                 color: $cinza4;
+                
             }
 
             p.descricao {
