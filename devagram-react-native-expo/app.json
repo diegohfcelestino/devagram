@@ -28,6 +28,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O App Devagram, deseja ter acesso a galeria do dispositivo."
+        }
+      ]
+    ]
   }
 }
