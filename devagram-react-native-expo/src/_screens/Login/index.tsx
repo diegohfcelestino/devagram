@@ -19,12 +19,11 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <Image
         style={styles.logo}
         source={require("../../_assets/images/Logo.png")}
       />
-
-      <StatusBar style="auto" />
 
       <Input
         onChangeText={(e: string) => setEmail(e)}
