@@ -2,11 +2,14 @@ import { StatusBar } from "expo-status-bar";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Button from "../../_components/Button";
 import Input from "../../_components/Input";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../../_routes/RootStackParams";
+import * as UserService from "../../_services/UserService";
+import communStyles from "../../communStyles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
   type navigationTypes = NativeStackNavigationProp<
@@ -15,7 +18,32 @@ const Login = () => {
   >;
   const navigation = useNavigation<navigationTypes>();
   const [email, setEmail] = useState<string>("");
+  const [erro, setErro] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  useEffect(() => {
+    verifyLogged();
+  }, []);
+
+  const onLogin = async () => {
+    try {
+      setLoading(true);
+      await UserService.login({ login: email, senha: password });
+      setLoading(false);
+      navigation.navigate("Home");
+    } catch (erro: any) {
+      console.log(erro);
+      setErro("Erro ao efetuar o login, tente novamente");
+      setLoading(false);
+    }
+  };
+
+  const verifyLogged = useCallback(async () => {
+    const user = await UserService.getCurrentUser();
+    if (user?.token) {
+      navigation.navigate("Home");
+    }
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -24,6 +52,8 @@ const Login = () => {
         style={styles.logo}
         source={require("../../_assets/images/Logo.png")}
       />
+
+      {erro != "" && <Text style={communStyles.textError}>{erro}</Text>}
 
       <Input
         onChangeText={(e: string) => setEmail(e)}
@@ -41,10 +71,10 @@ const Login = () => {
       />
 
       <Button
-        onPress={() => {}}
+        onPress={() => onLogin()}
         placeholder={"Login"}
-        loading={false}
-        disabled={false}
+        loading={loading}
+        disabled={!email || !password}
       />
       <View style={styles.containerWithAccount}>
         <Text>Não possui uma conta?</Text>

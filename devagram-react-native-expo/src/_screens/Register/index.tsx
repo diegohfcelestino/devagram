@@ -15,6 +15,8 @@ import {
   validatePassword,
   validateConfirmPassword
 } from "../../_utils/validations";
+import * as UserService from "../../_services/UserService";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Register = () => {
   type navigationTypes = NativeStackNavigationProp<
@@ -28,6 +30,7 @@ const Register = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const formIsValid = () => {
     const nameIsValid = validateName(name);
@@ -48,6 +51,32 @@ const Register = () => {
       setErro("Confirmação de senha não confere");
     } else {
       setErro("");
+    }
+  };
+
+  const onRegister = async () => {
+    try {
+      setLoading(true);
+      const body = new FormData();
+      body.append("nome", name);
+      body.append("email", email);
+      body.append("senha", password);
+      if (image) {
+        const file: any = {
+          uri: image.uri,
+          type: `image/${image.uri.split("/").pop().split(".").pop()}`,
+          name: image.uri.split("/").pop()
+        };
+        body.append("file", file);
+      }
+      await UserService.register(body);
+      await UserService.login({ login: email, senha: password });
+      setLoading(false);
+      navigation.navigate("Home");
+    } catch (erro: any) {
+      console.log(erro);
+      setErro("Erro ao efetuar o cadastro, tente novamente");
+      setLoading(false);
     }
   };
 
@@ -91,9 +120,9 @@ const Register = () => {
       />
 
       <Button
-        onPress={() => {}}
+        onPress={() => onRegister()}
         placeholder={"Cadastrar"}
-        loading={false}
+        loading={loading}
         disabled={
           erro != "" ||
           name == "" ||
