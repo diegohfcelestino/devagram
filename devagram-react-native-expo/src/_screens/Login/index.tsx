@@ -9,7 +9,6 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamsList } from "../../_routes/RootStackParams";
 import * as UserService from "../../_services/UserService";
 import communStyles from "../../communStyles";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Login = () => {
   type navigationTypes = NativeStackNavigationProp<
