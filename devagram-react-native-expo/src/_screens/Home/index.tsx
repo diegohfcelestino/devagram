@@ -1,5 +1,6 @@
 import { Text, View } from "react-native";
 import Container from "../../_components/Container";
+import Feed from "../../_components/Feed";
 
 const Home = () => {
   return (
@@ -7,7 +8,7 @@ const Home = () => {
       headerProps={{ default: true }}
       footerProps={{ currentTab: "Home" }}
     >
-      <Text>Home</Text>
+      <Feed />
     </Container>
   );
 };
