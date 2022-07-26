@@ -9,6 +9,7 @@ import { IPost } from "./types";
 const Post = (props: { post: IPost }) => {
   const [liked, setLiked] = useState<boolean>(false);
   const [commented, setCommented] = useState<boolean>(false);
+  const [numberOfLines, setNumberOfLines] = useState<number | undefined>(2);
   const [userLogged, setUserLogged] = useState<IUser>();
 
   useEffect(() => {
@@ -72,6 +73,22 @@ const Post = (props: { post: IPost }) => {
             {props.post.likes.length} pessoas
           </Text>
         </Text>
+      </View>
+      <View style={styles.containerDescription}>
+        <Text numberOfLines={numberOfLines} style={styles.textDescription}>
+          <Text style={styles.textUserName}>{props.post.user.name}</Text>
+          {" " + props.post.description}
+        </Text>
+        {props.post.description.length > 90 && (
+          <TouchableOpacity
+            style={{ alignItems: "flex-end", justifyContent: "flex-end" }}
+            onPress={() => setNumberOfLines(numberOfLines ? undefined : 2)}
+          >
+            <Text style={styles.textMoreOrLess}>
+              {!numberOfLines ? "menos" : "mais"}
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );
