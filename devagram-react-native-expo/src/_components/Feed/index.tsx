@@ -62,7 +62,7 @@ const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
       <FlatList
         data={posts}
         keyExtractor={item => item.id.toString()}
-        renderItem={({ item }) => <Post />}
+        renderItem={({ item }) => <Post post={item} />}
         onEndReachedThreshold={0.1}
         ListFooterComponent={() =>
           isLoading ? (
