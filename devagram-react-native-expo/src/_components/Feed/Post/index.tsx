@@ -60,7 +60,7 @@ const Post = (props: { post: IPost }) => {
   return (
     <View style={styles.container}>
       <View style={styles.containerUser}>
-        <Avatar image={props.post.user.avatar} />
+        <Avatar user={props.post.user} />
         <Text style={styles.textUserName}>{props.post.user.name}</Text>
       </View>
       <View>

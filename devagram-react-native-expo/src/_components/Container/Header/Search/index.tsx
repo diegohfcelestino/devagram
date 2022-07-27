@@ -60,7 +60,7 @@ const Search = (props: { filter: string }) => {
     >
       <View style={styles.row}>
         <View>
-          <Avatar image={user.avatar} />
+          <Avatar user={user} />
         </View>
         <View>
           <Text style={styles.name}>{user.name}</Text>

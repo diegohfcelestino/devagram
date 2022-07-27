@@ -1,18 +1,24 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import { RootStackParamsList } from "../../_routes/RootStackParams";
 import { IUser, IUserData } from "../../_services/UserService/types";
 import styles from "./styles";
-import { colors } from "../../../app.json";
 
-const Avatar = (props: { image: string | null }) => {
+const Avatar = (props: { user: IUserData | IUser }) => {
+  type navigationTypes = NativeStackNavigationProp<RootStackParamsList, "Home">;
+  const navigation = useNavigation<navigationTypes>();
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("Profile", props.user);
+      }}
+    >
       <Image
         style={styles.imageUser}
         source={
-          props.image
-            ? { uri: props.image }
+          props.user.avatar
+            ? { uri: props.user.avatar }
             : require("../../_assets/images/user.png")
         }
       />
