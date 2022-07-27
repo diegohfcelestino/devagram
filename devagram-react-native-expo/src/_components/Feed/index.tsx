@@ -33,11 +33,11 @@ const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
             image: post.foto,
             description: post.descricao,
             user: {
-              name: post.usuario.nome,
-              avatar: post.usuario.avatar,
-              id: "",
+              name: post?.usuario?.nome || props.profile?.name,
+              avatar: post?.usuario?.avatar || props.profile?.avatar,
               email: "",
-              token: ""
+              token: "",
+              id: post.idUsuario
             },
             comments: post.comentarios.map((c: any) => {
               return {
