@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { ActivityIndicator, Alert, FlatList, View } from "react-native";
 import { IUserData } from "../../_services/UserService/types";
 import * as FeedService from "../../_services/FeedService";
 import { IPost } from "./Post/types";
@@ -54,6 +54,8 @@ const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
         setIsLoading(false);
       } catch (err: any) {
         setIsLoading(false);
+        console.log(err);
+        Alert.alert("Erro", "Ocorreu um erro ao carregar o feed");
       }
     }
   };

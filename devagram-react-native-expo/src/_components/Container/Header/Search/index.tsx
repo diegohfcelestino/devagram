@@ -11,6 +11,7 @@ import { IUserData } from "../../../../_services/UserService/types";
 import * as UserService from "../../../../_services/UserService";
 import { colors } from "../../../../../app.json";
 import styles from "./styles";
+import Avatar from "../../../Avatar";
 
 const Search = (props: { filter: string }) => {
   const [users, setUsers] = useState<IUserData[]>([]);
@@ -59,14 +60,7 @@ const Search = (props: { filter: string }) => {
     >
       <View style={styles.row}>
         <View>
-          <Image
-            style={styles.imageUser}
-            source={
-              user.avatar
-                ? { uri: user.avatar }
-                : require("../../../../_assets/images/user.png")
-            }
-          />
+          <Avatar image={user.avatar} />
         </View>
         <View>
           <Text style={styles.name}>{user.name}</Text>

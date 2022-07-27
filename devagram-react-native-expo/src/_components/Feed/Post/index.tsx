@@ -1,23 +1,40 @@
 import { useEffect, useState } from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Image, Text, TouchableOpacity, View } from "react-native";
 import { post } from "../../../_services/DevagramApiService";
 import { getCurrentUser } from "../../../_services/UserService";
 import { IUser } from "../../../_services/UserService/types";
+import Avatar from "../../Avatar";
+import Comments from "../Comments";
 import styles from "./styles";
 import { IPost } from "./types";
+import * as FeedService from "../../../_services/FeedService";
 
 const Post = (props: { post: IPost }) => {
   const [liked, setLiked] = useState<boolean>(false);
+  const [likes, setLikes] = useState<number>(props.post.likes.length);
   const [commented, setCommented] = useState<boolean>(false);
+  const [commentInputActive, setCommentInputActive] = useState<boolean>(false);
   const [numberOfLines, setNumberOfLines] = useState<number | undefined>(2);
   const [userLogged, setUserLogged] = useState<IUser>();
 
   useEffect(() => {
     verifyLiked();
+    verifyCommented();
   }, []);
 
   const toggleLike = async () => {
     setLiked(!liked);
+    try {
+      await FeedService.toggleLike(props.post.id);
+      if (liked) {
+        setLikes(likes - 1);
+      } else {
+        setLikes(likes + 1);
+      }
+    } catch (error: any) {
+      console.log(error);
+      Alert.alert("Erro", "Ocorreu um erro ao realizar o like");
+    }
   };
 
   const verifyLiked = async () => {
@@ -28,19 +45,22 @@ const Post = (props: { post: IPost }) => {
     }
   };
 
+  const verifyCommented = async () => {
+    const user = await getCurrentUser();
+    setUserLogged(user);
+    if (user.id) {
+      setCommented(
+        props.post.comments.find(comment => comment.userId === user.id)
+          ? true
+          : false
+      );
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.containerUser}>
-        <TouchableOpacity>
-          <Image
-            style={styles.imageUser}
-            source={
-              props.post.user.avatar
-                ? { uri: props.post.user.avatar }
-                : require("../../../_assets/images/user.png")
-            }
-          />
-        </TouchableOpacity>
+        <Avatar image={props.post.user.avatar} />
         <Text style={styles.textUserName}>{props.post.user.name}</Text>
       </View>
       <View>
@@ -57,11 +77,13 @@ const Post = (props: { post: IPost }) => {
             }
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => setCommentInputActive(!commentInputActive)}
+        >
           <Image
             style={styles.icon}
             source={
-              commented
+              commented || commentInputActive
                 ? require("../../../_assets/images/commented.png")
                 : require("../../../_assets/images/notCommented.png")
             }
@@ -70,7 +92,7 @@ const Post = (props: { post: IPost }) => {
         <Text style={styles.textLike}>
           Curtido por{" "}
           <Text style={[styles.textLike, styles.TextLikeBold]}>
-            {props.post.likes.length} pessoas
+            {likes} pessoas
           </Text>
         </Text>
       </View>
@@ -90,6 +112,14 @@ const Post = (props: { post: IPost }) => {
           </TouchableOpacity>
         )}
       </View>
+      {userLogged && (
+        <Comments
+          idPost={props.post.id}
+          userLogged={userLogged}
+          inputCommentIsActive={commentInputActive}
+          comments={props.post.comments}
+        />
+      )}
     </View>
   );
 };
