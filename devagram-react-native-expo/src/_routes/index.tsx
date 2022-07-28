@@ -3,6 +3,7 @@ import Register from "../_screens/Register";
 import Login from "../_screens/Login";
 import Home from "../_screens/Home";
 import Profile from "../_screens/Profile";
+import EditProfile from "../_screens/EditProfile";
 
 const Routes = () => {
   const Stack = createNativeStackNavigator();
@@ -13,6 +14,7 @@ const Routes = () => {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="EditProfile" component={EditProfile} />
     </Stack.Navigator>
   );
 };

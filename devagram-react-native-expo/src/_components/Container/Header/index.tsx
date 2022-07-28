@@ -3,12 +3,12 @@ import styles from "./styles";
 import { IHeader } from "./types";
 import { colors } from "../../../../app.json";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamsList } from "../../../_routes/RootStackParams";
+import { RootStackParamList } from "../../../_routes/RootStackParams";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Header = (props: IHeader) => {
-  type navigationTypes = NativeStackNavigationProp<RootStackParamsList, "Home">;
+  type navigationTypes = NativeStackNavigationProp<RootStackParamList, "Home">;
   const navigation = useNavigation<navigationTypes>();
   const logout = async () => {
     await AsyncStorage.removeItem("token");
@@ -75,6 +75,34 @@ const Header = (props: IHeader) => {
                 />
               </TouchableOpacity>
             )}
+          </View>
+        </View>
+      )}
+      {props.editProfileHeader && (
+        <View style={styles.containerProfile}>
+          <View style={{ marginHorizontal: 16 }}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text style={styles.textCancel}>Cancelar</Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.textName}>Editar Perfil</Text>
+          <View style={{ marginHorizontal: 16 }}>
+            <TouchableOpacity
+              onPress={() =>
+                props.editProfileHeader?.submitEnable &&
+                props.editProfileHeader?.submit()
+              }
+            >
+              <Text
+                style={
+                  props.editProfileHeader.submitEnable
+                    ? styles.textSubmit
+                    : styles.textSubmitDisabled
+                }
+              >
+                Concluir
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       )}

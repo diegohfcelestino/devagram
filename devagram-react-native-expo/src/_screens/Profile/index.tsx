@@ -1,27 +1,31 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useEffect, useState } from "react";
-import { Alert, Text, View } from "react-native";
+import { Alert, View } from "react-native";
 import Container from "../../_components/Container";
 import Feed from "../../_components/Feed";
-import { RootStackParamsList } from "../../_routes/RootStackParams";
+import UserInfo from "../../_components/UserInfos";
+import { RootStackParamList } from "../../_routes/RootStackParams";
 import * as UserService from "../../_services/UserService";
 import { IUser, IUserData } from "../../_services/UserService/types";
 
 const Profile = () => {
   type navigationTypes = NativeStackNavigationProp<
-    RootStackParamsList,
+    RootStackParamList,
     "Profile"
   >;
   const navigation = useNavigation<navigationTypes>();
   const profileParams = navigation
     .getState()
-    .routes.find(route => route.name === "Profile")?.params;
+    .routes.find(route => route.name == "Profile")?.params;
+
   const [userLogged, setUserLogged] = useState<IUser>();
   const [profile, setProfile] = useState<IUserData>();
 
   useEffect(() => {
-    getProfile();
+    navigation.addListener("focus", () => {
+      getProfile();
+    });
   }, []);
 
   const getProfile = async () => {
@@ -70,7 +74,12 @@ const Profile = () => {
         currentTab: userLogged?.id == profile?.id ? "Profile" : "Home"
       }}
     >
-      <Feed isProfileFeed={true} profile={profile} />
+      <View>
+        {profile && userLogged && (
+          <UserInfo userLogged={userLogged} profile={profile} />
+        )}
+        <Feed isProfileFeed={true} profile={profile} />
+      </View>
     </Container>
   );
 };

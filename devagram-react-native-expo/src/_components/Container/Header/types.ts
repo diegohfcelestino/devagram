@@ -3,6 +3,7 @@ export interface IHeader {
   searchBar?: ISearchBar;
   // headerNewPublication?: IHeaderNewPublication;
   profileHeader?: IProfileHeader;
+  editProfileHeader?: IEditProfileHeader;
 }
 
 export interface IHeaderNewPublication {
