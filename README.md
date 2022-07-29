@@ -39,23 +39,29 @@ O Projeto desenvolvido foi um clone do Instagram, onde criamos o backend com Nod
 
 
 ### Backend
+<div> 
 <img src="./assets/next.png" width="150">
 <img src="./assets/node.png" width="80">
+</div>
 
 
 - [Backend](https://github.com/diegohfcelestino/devagram/tree/main/devagram-node-nextjs)
 Criamos o backend da aplicação utilizando NodeJS com o Nextjs. Nesse projeto utilizou o Typescript, que auxilia no aumento da produtividade em desenvolvimento, utilizamos o Mongose, para trabalhar com banco de dados e integrar com o Mongo Atlas (que é o MongoDB online), utilizamos o multer e o cosmic para trabalhar com upload de imagens e também inserimos política de CORS.
 
-### Frontend    
+### Frontend   
+<div> 
 <img src="./assets/next.png" width="150">
 <img src="./assets/react.png" width="80">
+</div>
 
 - [Frontend](https://github.com/diegohfcelestino/devagram/tree/main/devagram-react-nextjs)
 O frontend web da nossa aplicação utilizamos o ReactJS também com o Nextjs. Nesta parte de projeto utilizamos o Javascript, Sass para criar os estilos, axios para chamadas http, utilizamos o HOC (Higher-Order Component), para reutilizar os componentes e dar autorização nas páginas de acesso.
 
-### Mobile    
+### Mobile  
+<div>   
 <img src="./assets/react.png" width="150">
 <img src="./assets/expo.png" width="70">
+</div>
 
 - [Mobile](https://github.com/diegohfcelestino/devagram/tree/main/devagram-react-native-expo)
 O mobile foi construido com o React-native utilizando o expo, para renderização mais rápida e pelo dispositivo móvel (durante o desenvolvimento). Nele foi utilizado typescript, axios para chamadas http, image picker para trabalhar com imagens e tudo separado em componente para reaproveitamento do código.
