@@ -15,6 +15,7 @@ import Avatar from "../../../Avatar";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../../../_routes/RootStackParams";
 import { useNavigation } from "@react-navigation/native";
+import Loading from "../../Loading";
 
 const Search = (props: { filter: string }) => {
   type navigationTypes = NativeStackNavigationProp<RootStackParamList, "Home">;
@@ -84,13 +85,7 @@ const Search = (props: { filter: string }) => {
           keyExtractor={item => item.id.toString()}
           renderItem={({ item }) => renderItem(item)}
           onEndReachedThreshold={0.1}
-          ListFooterComponent={() =>
-            isLoading ? (
-              <View>
-                <ActivityIndicator size={30} color={colors.primaryColor} />
-              </View>
-            ) : null
-          }
+          ListFooterComponent={() => <Loading isLoading={isLoading} />}
         />
       )}
     </View>

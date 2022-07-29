@@ -8,6 +8,7 @@ import { RootStackParamList } from "../../_routes/RootStackParams";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Post from "./Post";
 import { colors } from "../../../app.json";
+import Loading from "../Container/Loading";
 
 const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
   type navigationTypes = NativeStackNavigationProp<RootStackParamList, "Home">;
@@ -66,13 +67,7 @@ const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
         keyExtractor={item => item.id.toString()}
         renderItem={({ item }) => <Post post={item} />}
         onEndReachedThreshold={0.1}
-        ListFooterComponent={() =>
-          isLoading ? (
-            <View>
-              <ActivityIndicator size={30} color={colors.primaryColor} />
-            </View>
-          ) : null
-        }
+        ListFooterComponent={() => <Loading isLoading={isLoading} />}
       />
     </View>
   );

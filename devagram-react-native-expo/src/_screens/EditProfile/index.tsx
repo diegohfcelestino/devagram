@@ -15,7 +15,7 @@ import { RootStackParamList } from "../../_routes/RootStackParams";
 import styles from "./styles";
 import * as ImagePicker from "expo-image-picker";
 import * as UserService from "../../_services/UserService";
-// import Loading from "../../_components/Container/Loading"
+import Loading from "../../_components/Container/Loading";
 
 const EditProfile = () => {
   type navigationTypes = NativeStackNavigationProp<
@@ -73,7 +73,7 @@ const EditProfile = () => {
 
   return (
     <Container
-      // isLoading={isLoading}
+      isLoading={isLoading}
       headerProps={{
         editProfileHeader: {
           submit: editProfile,

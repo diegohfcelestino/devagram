@@ -7,7 +7,7 @@ import * as FeedService from "../../_services/FeedService";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../_routes/RootStackParams";
 import { useNavigation } from "@react-navigation/native";
-// import Loading from "../../_components/Container/Loading"
+import Loading from "../../_components/Container/Loading";
 
 const Publication = () => {
   type navigationTypes = NativeStackNavigationProp<
@@ -65,7 +65,7 @@ const Publication = () => {
 
   return (
     <Container
-      // isLoading={isLoading}
+      isLoading={isLoading}
       footerProps={{ currentTab: "Publication" }}
       headerProps={{
         publicationHeader: {
