@@ -105,7 +105,7 @@ const EditProfile = () => {
                       style={styles.input}
                       value={name}
                       onChangeText={n => setName(n)}
-                      autoCapitalize={"characters"}
+                      autoCapitalize={"words"}
                     />
                   )}
 

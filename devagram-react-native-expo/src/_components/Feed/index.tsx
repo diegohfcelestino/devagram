@@ -4,13 +4,13 @@ import { IUserData } from "../../_services/UserService/types";
 import * as FeedService from "../../_services/FeedService";
 import { IPost } from "./Post/types";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamsList } from "../../_routes/RootStackParams";
+import { RootStackParamList } from "../../_routes/RootStackParams";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import Post from "./Post";
 import { colors } from "../../../app.json";
 
 const Feed = (props: { isProfileFeed?: boolean; profile?: IUserData }) => {
-  type navigationTypes = NativeStackNavigationProp<RootStackParamsList, "Home">;
+  type navigationTypes = NativeStackNavigationProp<RootStackParamList, "Home">;
   const navigation = useNavigation<navigationTypes>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [posts, setPosts] = useState<IPost[]>([]);

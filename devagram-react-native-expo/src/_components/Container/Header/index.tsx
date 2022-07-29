@@ -10,10 +10,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const Header = (props: IHeader) => {
   type navigationTypes = NativeStackNavigationProp<RootStackParamList, "Home">;
   const navigation = useNavigation<navigationTypes>();
+
   const logout = async () => {
     await AsyncStorage.removeItem("token");
     navigation.navigate("Login");
   };
+
   return (
     <View style={styles.container}>
       {props.default && (
@@ -54,6 +56,7 @@ const Header = (props: IHeader) => {
           </View>
         </View>
       )}
+
       {props.profileHeader && (
         <View style={styles.containerProfile}>
           <View style={{ marginHorizontal: 16 }}>
@@ -78,6 +81,7 @@ const Header = (props: IHeader) => {
           </View>
         </View>
       )}
+
       {props.editProfileHeader && (
         <View style={styles.containerProfile}>
           <View style={{ marginHorizontal: 16 }}>
@@ -101,6 +105,35 @@ const Header = (props: IHeader) => {
                 }
               >
                 Concluir
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
+
+      {props.publicationHeader && (
+        <View style={styles.containerProfile}>
+          <View style={{ marginHorizontal: 16 }}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text style={styles.textCancel}>Cancelar</Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.textName}>Nova Publicacao</Text>
+          <View style={{ marginHorizontal: 16 }}>
+            <TouchableOpacity
+              onPress={() =>
+                props.publicationHeader?.submitEnable &&
+                props.publicationHeader?.submit()
+              }
+            >
+              <Text
+                style={
+                  props.publicationHeader.submitEnable
+                    ? styles.textSubmit
+                    : styles.textSubmitDisabled
+                }
+              >
+                Compartilhar
               </Text>
             </TouchableOpacity>
           </View>

@@ -12,8 +12,13 @@ import * as UserService from "../../../../_services/UserService";
 import { colors } from "../../../../../app.json";
 import styles from "./styles";
 import Avatar from "../../../Avatar";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../../../_routes/RootStackParams";
+import { useNavigation } from "@react-navigation/native";
 
 const Search = (props: { filter: string }) => {
+  type navigationTypes = NativeStackNavigationProp<RootStackParamList, "Home">;
+  const navigation = useNavigation<navigationTypes>();
   const [users, setUsers] = useState<IUserData[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -52,6 +57,7 @@ const Search = (props: { filter: string }) => {
 
   const renderItem = (user: IUserData) => (
     <TouchableOpacity
+      onPress={() => navigation.navigate("Profile", user)}
       style={
         user.index && user.index % 2 != 0
           ? styles.backgroundOdd

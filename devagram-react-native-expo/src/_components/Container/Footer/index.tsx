@@ -1,15 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Image, TouchableOpacity, View } from "react-native";
-import { RootStackParamsList } from "../../../_routes/RootStackParams";
+import { RootStackParamList } from "../../../_routes/RootStackParams";
 import styles from "./styles";
 import { IFooter } from "./types";
 
 const Footer = (props: IFooter) => {
-  type navigationTypes = NativeStackNavigationProp<
-    RootStackParamsList,
-    "Login"
-  >;
+  type navigationTypes = NativeStackNavigationProp<RootStackParamList, "Login">;
   const navigation = useNavigation<navigationTypes>();
   const menu = [
     {
@@ -23,7 +20,7 @@ const Footer = (props: IFooter) => {
     {
       title: "Publication",
       onPress: () => {
-        navigation.navigate("NewPublication");
+        navigation.navigate("Publication");
       },
       icon: require("../../../_assets/images/newPublication.png"),
       iconActivated: require("../../../_assets/images/newPublicationAtivo.png")

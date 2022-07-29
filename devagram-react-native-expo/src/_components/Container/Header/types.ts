@@ -4,6 +4,7 @@ export interface IHeader {
   // headerNewPublication?: IHeaderNewPublication;
   profileHeader?: IProfileHeader;
   editProfileHeader?: IEditProfileHeader;
+  publicationHeader?: IPublicationHeader;
 }
 
 export interface IHeaderNewPublication {
@@ -23,6 +24,11 @@ export interface IProfileHeader {
 }
 
 export interface IEditProfileHeader {
+  submit: () => void;
+  submitEnable?: boolean;
+}
+
+export interface IPublicationHeader {
   submit: () => void;
   submitEnable?: boolean;
 }
