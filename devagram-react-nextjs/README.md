@@ -1,34 +1,87 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+	Devagram - Frontend Nextjs.
+</h1>
 
-## Getting Started
 
-First, run the development server:
+
+<p align="center"> 
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-executar">Como executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-licença">Licença</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#autor">Autor</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#contato">Contato</a>
+</p>
+
+<br/><br/><br/><br/><br/>
+
+## 💻 Projeto
+
+Este projeto foi desenvolvido na trilha de fullstack na comunidade **[Devaria](https://www.devaria.com.br/)**, que é feita durante o ano todo separado por módulos e este foi o de frontend com React utilizando Nextjs.<br/>
+O projeto está publicado na Vercel.<br/>
+Link do projeto - [Next](https://devagram-next.vercel.app/)
+
+## 🧪 Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+
+- [Next](https://nextjs.org/)
+- [Reactjs](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [SASS](https://sass-lang.com/)
+- [Axios](https://axios-http.com/ptbr/docs/intro)
+- [Vercel](https://vercel.com/)
+
+Para mais detalhes, veja o **[package.json](./package.json)**.<br/><br/>
+
+## 🚀 Como executar
+
+Como pré-requisitos, é necessário instalar o [Node.js](https://nodejs.org/pt-br/) e o [Yarn](https://classic.yarnpkg.com/en/docs/install/) em suas versões LTS.
+
+Após a instalação do Node e Yarn, basta clonar o projeto e acesse a pasta do mesmo.
 
 ```bash
-npm run dev
-# or
-yarn dev
+$ git clone https://github.com/diegohfcelestino/devagram.git
+$ cd devagram/devagram-react-nextjs
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Para iniciá-lo, siga os passos abaixo:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+# Instalar as dependências
+$ yarn
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+# Iniciar o projeto
+$ yarn run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+O app estará disponível no seu browser pelo endereço [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+Lembrando que será necessário ter o backend funcionando para integração e colocar a api no env.local conforme exemplo na raiz do projeto.<br/><br/>
 
-To learn more about Next.js, take a look at the following resources:
+## 🔖 Layout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Você pode visualizar o layout do projeto através do link abaixo:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Layout Web](<https://www.figma.com/file/9KlZQL9sYthRiqdnehLzpj/Projeto-Devaria-2022?node-id=226%3A2>)
 
-## Deploy on Vercel
+Lembrando que você precisa ter uma conta no [Figma](https://figma.com/).<br/><br/>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 Licença
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo de [LICENÇA](LICENSE.md) para obter detalhes.<br/><br/>
+
+## ✨ Autor
+
+<p align="center">Feito com 💜 e dedicação por Diego Henrique Ferreira</p><br/><br/>
+
+## Contato
+
+Entre em contato em minhas redes.
+
+[![Github Badge](https://img.shields.io/badge/-Github-000?style=flat-square&logo=Github&logoColor=white&link=link_do_seu_perfil_no_github)](https://github.com/diegohfcelestino)
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/diego-ferreira-34b6348b/)](https://www.linkedin.com/in/diegohfcelestino/)
+[![Whatsapp Badge](https://img.shields.io/badge/-Whatsapp-4CA143?style=flat-square&labelColor=4CA143&logo=whatsapp&logoColor=white&link=https://api.whatsapp.com/send?phone=+5516991187434&text=Hello!)](https://api.whatsapp.com/send?phone=+5516991187434&text=Hello!)
+[![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:diegohfcelestino@gmail.com)](mailto:diegohfcelestino@gmail.com)
+<br/>

@@ -68,7 +68,7 @@ O mobile foi construido com o React-native utilizando o expo, para renderizaçã
 
 
 
-## ✨ Tecnologias 
+## 🧪 Tecnologias
 
 <div>
 <img src="./assets/next.png" width="50">
@@ -101,6 +101,7 @@ O mobile foi construido com o React-native utilizando o expo, para renderizaçã
 - [Cosmicjs](https://www.cosmicjs.com/)
 - [SASS](https://sass-lang.com/)
 - [Axios](https://axios-http.com/ptbr/docs/intro)
+- [Vercel](https://vercel.com/)
   
 
 

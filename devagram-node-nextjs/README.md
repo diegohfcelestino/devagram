@@ -1,5 +1,5 @@
 <h1 align="center">
-	Devagram - backend Node com NExtjs
+	Devagram - Backend Node com Nextjs.
 </h1>
 
 
